@@ -1,3 +1,4 @@
+import type { PhysicalBody } from "./physical/body";
 import { Screen } from "./screen";
 import Vector2D from "./vector";
 
@@ -9,6 +10,7 @@ export type EntityStyle = {
 /**
  * Represent an entity in canvas/screen.
  * An entity is an abstract object with properties in the digtal landscape (in this sense, the canvas).
+ * An entity is a static body. It can be extended and overriden.
  */
 export default class Entity {
     public id: string;
@@ -16,12 +18,11 @@ export default class Entity {
     public style: EntityStyle;
     public width: number;
     public height: number;
-    public velocity: Vector2D;
-    public acceleration: Vector2D;
+    public body: PhysicalBody = "static";
 
     protected lockMovements: boolean = false;
 
-    private screen: Screen;
+    protected screen: Screen;
 
     constructor(screen: Screen, id: string, x: number, y: number, style: EntityStyle, w: number = 20, h: number = 20) {
         this.screen = screen;
@@ -32,8 +33,6 @@ export default class Entity {
 
         this.width = w;
         this.height = h;
-        this.velocity = new Vector2D(0, 0);
-        this.acceleration = new Vector2D(0,0);
     }
 
     public async update(dt: number): Promise<void> { }
@@ -52,10 +51,5 @@ export default class Entity {
         await this.clearShape(ctx);
     }
 
-    public async limitMovement() {
-        if (this.position.x >= (this.screen.canvas.width - 10) || this.position.y >= (this.screen.canvas.height - 10)) {
-            this.lockMovements = true;
-        }
 
-    }
 }

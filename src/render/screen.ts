@@ -1,5 +1,7 @@
+import { Avatar } from "./entities/avatar";
 import Ball from "./entities/balls";
 import Entity from "./entity";
+import type { KinematicBody } from "./physical/kinematic";
 
 export class Screen {
     public canvas: HTMLCanvasElement;
@@ -9,7 +11,7 @@ export class Screen {
     constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
 
-        this.entities = [new Ball(this, "ball", 0, 0, { color: "black" })];
+        this.entities = [new Ball(this, "ball", 0, 0, { color: "black" }), new Avatar(this)];
 
         this.lastFrameTime = Date.now();
     }
@@ -25,7 +27,11 @@ export class Screen {
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             for (const entity of this.entities) {
                 await entity.process(ctx, dt);
-                await entity.limitMovement();
+                
+                if (entity.body === "kinematic") {
+                    const body = entity as KinematicBody;
+                    await body.limitMovement();
+                }
             }
             requestAnimationFrame(tick);
         };

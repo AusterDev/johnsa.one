@@ -1,15 +1,16 @@
 import Entity from "../entity";
+import { KinematicBody } from "../physical/kinematic";
 import Vector2D from "../vector";
 
-export default class Ball extends Entity {
+export default class Ball extends KinematicBody {
     private speed = 5;
-    private direction = new Vector2D(1, 0);
+    private direction = new Vector2D(1, 1);
 
     public async update(dt: number): Promise<void> {
         if (!this.lockMovements) {
             const nrmalised = this.direction.normalise();
             console.log(nrmalised)
-            this.acceleration = nrmalised.scale(this.speed * 0.5);
+            this.acceleration = nrmalised.scale(this.speed * 2.5);
             console.log(this.acceleration)
             this.velocity.x += this.acceleration.x * dt;
             this.velocity.y += this.acceleration.y * dt;
@@ -18,7 +19,8 @@ export default class Ball extends Entity {
             this.position.y += (this.velocity.y * dt)
             console.log(this.position)
             return
-        } 
+        } else {
+        }
     }
 
     protected async drawShape(ctx: CanvasRenderingContext2D): Promise<void> {
