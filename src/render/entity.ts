@@ -54,7 +54,6 @@ export default class Entity {
 
     public async limitMovement() {
         if (this.position.x >= (this.screen.canvas.width - 10) || this.position.y >= (this.screen.canvas.height - 10)) {
-            console.log("limit reached")
             this.lockMovements = true;
         }
 

@@ -11,7 +11,7 @@ export class Screen {
 
         this.entities = [new Ball(this, "ball", 0, 0, { color: "black" })];
 
-        this.lastFrameTime = performance.now();
+        this.lastFrameTime = Date.now();
     }
 
     public async frame() {
