@@ -1,25 +1,47 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { Screen } from "../render/screen";
+    import { KeyInputProcessor } from "../processor/input.processor";
 
     let screenElement = $state<HTMLCanvasElement | null>(null);
     let screen = $state<Screen | null>(null);
+    let keyboard = $state<KeyInputProcessor | null>(null);
+
+    function onkeydown(
+        e: KeyboardEvent & {
+            currentTarget: EventTarget & Window;
+        },
+    ) {
+        if (!keyboard) return;
+
+        keyboard.onkeyDown(e);
+    }
+
+    function onkeyup(
+        e: KeyboardEvent & {
+            currentTarget: EventTarget & Window;
+        },
+    ) {
+        if (!keyboard) return;
+
+        keyboard.onKeyUp(e);
+    }
 
     onMount(() => {
         let check = true;
-        console.log(check);
 
         while (check) {
-            console.log(screenElement);
             if (!screenElement) return;
 
-            screen = new Screen(screenElement);
+            keyboard = new KeyInputProcessor();
+            screen = new Screen(screenElement, keyboard);
             screen.frame();
             check = false;
         }
     });
 </script>
 
+<svelte:window on:keydown={onkeydown} on:keyup={onkeyup} />
 <canvas id="screen" bind:this={screenElement} class="h-screen w-full">
     This component contains a presentation. If you are using a screen reader,
     you will hear the contents after this message ends. However, if you are

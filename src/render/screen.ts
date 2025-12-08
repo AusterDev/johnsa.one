@@ -1,5 +1,5 @@
-import { Avatar } from "./entities/avatar";
-import Ball from "./entities/balls";
+import type { KeyInputProcessor } from "../processor/input.processor";
+import Bucket from "./entities/bucket";
 import Entity from "./entity";
 import type { KinematicBody } from "./physical/kinematic";
 
@@ -7,11 +7,13 @@ export class Screen {
     public canvas: HTMLCanvasElement;
     private entities: Entity[];
     private lastFrameTime: number;
+    public keyboard: KeyInputProcessor;
 
-    constructor(canvas: HTMLCanvasElement) {
+    constructor(canvas: HTMLCanvasElement, keyboard: KeyInputProcessor) {
         this.canvas = canvas;
-
-        this.entities = [new Ball(this, "ball", 0, 0, { color: "black" }), new Avatar(this)];
+        this.keyboard = keyboard;
+        
+        this.entities = [new Bucket(this, "bucket", Math.round(canvas.width / 2), Math.round(canvas.height / 2), 10, 10)];
 
         this.lastFrameTime = Date.now();
     }

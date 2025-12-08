@@ -1,4 +1,3 @@
-import Entity from "../entity";
 import { KinematicBody } from "../physical/kinematic";
 import Vector2D from "../vector";
 
