@@ -16,9 +16,9 @@ export class KinematicBody extends Entity {
     }
 
     public async limitMovement() {
-        if (this.position.x >= (this.screen.canvas.width - 10) || this.position.y >= (this.screen.canvas.height - 10)) {
-            this.lockMovements = true;
-        }
+        // if (this.position.x >= (this.screen.canvas.width - 10) || this.position.y >= (this.screen.canvas.height - 10)) {
+        //     this.lockMovements = true;
+        // }
 
     }
 }

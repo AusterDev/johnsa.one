@@ -42,7 +42,7 @@
 </script>
 
 <svelte:window on:keydown={onkeydown} on:keyup={onkeyup} />
-<canvas id="screen" bind:this={screenElement} class="h-screen w-full">
+<canvas id="screen" bind:this={screenElement} width={window.innerWidth} height={window.innerHeight}>
     This component contains a presentation. If you are using a screen reader,
     you will hear the contents after this message ends. However, if you are
     seeing this text, then your browser does not support the canvas element.
