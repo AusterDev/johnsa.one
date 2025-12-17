@@ -10,6 +10,6 @@ export class Border extends Entity {
 
     protected async drawShape(ctx: CanvasRenderingContext2D): Promise<void> {
         ctx.fillStyle = "black";
-        ctx.fillRect(0, Math.round(this.position.y), Math.round(this.position.x), 10);
+        ctx.fillRect(0, Math.round(this.position.y), Math.round(this.position.x), 30);
     }
 }

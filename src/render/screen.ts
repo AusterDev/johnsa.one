@@ -14,7 +14,12 @@ export class Screen {
         this.canvas = canvas;
         this.keyboard = keyboard;
 
-        this.entities = [new Border(this, "border", canvas.width, canvas.height - 10, {}), new Ball(this, "ball", 0, 0, {}, 32, 30), new Ball(this, "ball", 90, 0, { color: "green" }, 32, 30), new Ball(this, "ball", 50, 0, { color: "blue" }, 32, 30)];
+        this.entities = [new Border(this, "border", screen.width, window.innerHeight-20, { }, screen.width, 30)];
+
+        const colors = ["red", "blue", "green"]
+        for (var i=0;i<=2;i++) {
+            this.entities.push(new Ball(this, "ball", Math.random() * screen.width - (100 - 10) + 10, 0, { color: colors[Math.floor(Math.random() * colors.length)] }, Math.random() * 200, Math.random() * 200))
+        }
 
         this.lastFrameTime = Date.now();
     }
@@ -27,7 +32,6 @@ export class Screen {
             const dt = (Date.now() - this.lastFrameTime) / 1000;
             this.lastFrameTime = Date.now();
       
-
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
             for (const entity of this.entities) {
                 await entity.process(ctx, Math.min(dt, 0.033));
