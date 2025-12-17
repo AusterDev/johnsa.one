@@ -24,17 +24,18 @@ export default class Ball extends KinematicBody {
         for (const en of this.screen.entities) {
             if (en.id !== "border") continue;
 
+            const radius = this.width / 2;
             const borderTop = en.position.y;
-            const ballBottom = this.position.y + this.height;
+            const pointOfContact = this.position.y + radius;
 
-            if ((borderTop <= ballBottom) && this.velocity.y >= 0) {
-                this.position.y = borderTop - this.height;
+            if ((pointOfContact >= borderTop) && this.velocity.y >= 0) {
+                this.position.y = borderTop - radius;
 
                 if (impactSpeed < this.rest_velocity) {
                     this.velocity.y = 0;
                     this.acceleration.y = 0;
                 } else {
-                    this.velocity.y *= -0.6;
+                    this.velocity.y *= -1.0;
                 }
             }
         }
