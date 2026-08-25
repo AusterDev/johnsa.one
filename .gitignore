@@ -25,3 +25,5 @@ pnpm-debug.log*
 
 # vscode, since astro won't
 .vscode 
+
+.wrangler
