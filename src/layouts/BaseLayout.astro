@@ -1,8 +1,10 @@
 ---
-import { ClientRouter } from "astro:transitions"
-import "../styles/global.css"
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
 
 const { title } = Astro.props;
+
+const SITE_LINK = "https://jauster.xyz"
 ---
 
 <html lang="en">
@@ -11,13 +13,28 @@ const { title } = Astro.props;
 		<link rel="icon" type="image/svg+xml" href="/avatar.jpg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<meta
+			name="description"
+			content="jauster is a site to showcase john's (auster) stuff"
+		/>
+		<meta property="og:title" content="Your Catchy Title" />
+		<meta
+			property="og:description"
+			content="jauster is a human who likes to code"
+		/>
+		<meta property="og:image" content={SITE_LINK} />
+		<meta property="og:url" content={SITE_LINK} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+
+		<meta name="theme-color" content="#9BD971" />
 		<title>{title || "jauster"}</title>
 	</head>
 	<body>
 		<main>
 			<div class="h-screen w-full font-mono bg-primary text-white">
-			<slot />
-		</div>
+				<slot />
+			</div>
 		</main>
 	</body>
 </html>
