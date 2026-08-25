@@ -1,6 +1,5 @@
 {
-	"main": "dist/_worker.js/index.js",
-	"name": "johnsa.one",
+	"name": "jauster-xyz",
   "compatibility_date": "2026-08-25",
   "compatibility_flags": [
     "nodejs_compat",
