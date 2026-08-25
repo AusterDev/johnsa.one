@@ -1,20 +1,63 @@
 ---
-import "../styles/global.css"
+import BaseLayoutAstroComponent from "../layouts/BaseLayout.astro";
 
-import Screen from "../components/Screen.svelte";
+type ActionItem = {
+	name: string;
+	link: string;
+}
+
+const items: ActionItem[] = [
+	{
+		name: "projects",
+		link: "/projects/all"
+	},
+	{
+		name: "articles",
+		link: "/article-guy/all"
+	},
+	{
+		name: "github",
+		link: "/github/hell"
+	},
+	{
+		name: "slice",
+		link: "/slice"
+	},
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/avatar.jpg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>John's website</title>
-	</head>
-	<body>
-		<div class="h-screen w-full">
-			<Screen client:only/>
+<BaseLayoutAstroComponent>
+	<div
+		transition:animate="slide"
+		class="flex flex-col h-screen justify-center items-center max-w-xl mx-auto px-4 text-center space-y-7"
+	>
+		<div class="text-xl text-left text-secondary">
+			<span
+				class="text-accent text-6xl text-shadow-sm text-shadow-secondary font-bold"
+				>auster</span
+			>
+			<span class="text-xl text-zinc-400">/ˈɑː.stɚ/</span>
+
+			<br><br>
+			hi, i'm john (aka auster).
+			<br /><br />
+			<span>
+				data science undergrad, developer, and independent security
+				researcher. i spend most of my time breaking and building
+				backend systems, networking tools, and low-level software.
+			</span>
+
+			<br /><br />
+			<span class="text-accent text-sm">
+				primarily working with go, c++, python, and java.
+			</span>
+
+			<br /><br />
+			<div class="flex space-x-4 text-zinc-300 text-lg">
+				{
+					items.map((item) => <a href={item.link}>[ <span class="underline hover:cursor-pointer">{item.name}</span> ]</a>)
+				}
+			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</BaseLayoutAstroComponent>

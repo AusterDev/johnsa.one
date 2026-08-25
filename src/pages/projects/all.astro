@@ -1,0 +1,11 @@
+---
+import BaseLayoutAstroComponent from "../../layouts/BaseLayout.astro";
+import ProjectItems from "../../components/Projects.svelte";
+import { PROJECTS } from "../../constants/index";
+---
+
+<BaseLayoutAstroComponent>
+    <div>
+        <ProjectItems client:load projects={PROJECTS} />
+    </div>
+</BaseLayoutAstroComponent>

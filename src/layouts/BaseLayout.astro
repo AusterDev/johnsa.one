@@ -1,0 +1,23 @@
+---
+import { ClientRouter } from "astro:transitions"
+import "../styles/global.css"
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/avatar.jpg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title || "jauster"}</title>
+	</head>
+	<body>
+		<main>
+			<div class="h-screen w-full font-mono bg-primary text-white">
+			<slot />
+		</div>
+		</main>
+	</body>
+</html>

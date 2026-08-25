@@ -17,7 +17,9 @@ export class Screen {
         this.entities = [new Border(this, "border", screen.width, window.innerHeight-20, { }, screen.width, 30)];
 
         const colors = ["red", "blue", "green"]
-        for (var i=0;i<=2;i++) {
+        const rand = Math.random() * (6 - 0 + 1);
+
+        for (var i=0;i<=rand;i++) {
             this.entities.push(new Ball(this, "ball", Math.random() * screen.width - (100 - 10) + 10, 0, { color: colors[Math.floor(Math.random() * colors.length)] }, Math.random() * 200, Math.random() * 200))
         }
 

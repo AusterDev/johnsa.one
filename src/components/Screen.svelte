@@ -28,6 +28,7 @@
     }
 
     onMount(() => {
+        alert("Idk what to do with this, I will decide later");
         let check = true;
 
         while (check) {
